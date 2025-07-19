@@ -5,16 +5,15 @@ import 'package:flight_information_repository/flight_information_repository.dart
 part 'flight_tracking_event.dart';
 part 'flight_tracking_state.dart';
 
-class FlightTrackingBloc
-    extends Bloc<FlightTrackingEvent, FlightTrackingState> {
+class FlightTrackingBloc extends Bloc<FlightTrackingEvent, FlightTrackingState> {
+  final FlightInformationRepository _flightInformationRepository;
+
   FlightTrackingBloc({
     required FlightInformationRepository flightProgressRepository,
   })  : _flightInformationRepository = flightProgressRepository,
         super(const FlightTrackingState()) {
     on<FlightTrackingUpdatesRequested>(_onFlightTrackingUpdatesRequested);
   }
-
-  final FlightInformationRepository _flightInformationRepository;
 
   Future<void> _onFlightTrackingUpdatesRequested(
     FlightTrackingUpdatesRequested event,
@@ -23,11 +22,9 @@ class FlightTrackingBloc
     await emit.forEach(
       _flightInformationRepository.flightInformation,
       onData: (flightInformation) {
-        final remainingTime =
-            flightInformation.timestamp.isAfter(flightInformation.arrivalTime)
-                ? Duration.zero
-                : flightInformation.arrivalTime
-                    .difference(flightInformation.timestamp);
+        final remainingTime = flightInformation.timestamp.isAfter(flightInformation.arrivalTime)
+            ? Duration.zero
+            : flightInformation.arrivalTime.difference(flightInformation.timestamp);
 
         final percentComplete = (100 -
                 remainingTime.inMinutes /

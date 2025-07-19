@@ -14,8 +14,7 @@ class FlightApiClient {
   /// {@macro flight_api_client}
   FlightApiClient();
 
-  final StreamController<FlightInformation> _controller =
-      StreamController<FlightInformation>();
+  final StreamController<FlightInformation> _controller = StreamController<FlightInformation>();
 
   Timer? _timer;
 
@@ -49,8 +48,7 @@ class FlightApiClient {
 
     _timestamp = _timestamp.add(_updateInterval);
 
-    final updatedArrivalTime =
-        _arrivalTime.add(Duration(minutes: random.nextInt(3)));
+    final updatedArrivalTime = _arrivalTime.add(Duration(minutes: random.nextInt(3)));
 
     if (_timestamp.isAfter(updatedArrivalTime)) {
       _timer?.cancel();
