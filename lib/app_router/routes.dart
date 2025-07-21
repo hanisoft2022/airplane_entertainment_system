@@ -60,8 +60,7 @@ class OverviewPageRouteData extends GoRouteData {
   const OverviewPageRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const OverviewPage();
+  Widget build(BuildContext context, GoRouterState state) => const OverviewPage();
 }
 
 @immutable
@@ -74,6 +73,7 @@ class MusicPlayerPageRouteData extends GoRouteData {
   const MusicPlayerPageRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const MusicPlayerPage();
+  Widget build(BuildContext context, GoRouterState state) => const MusicPlayerPage();
 }
+
+// for commit
