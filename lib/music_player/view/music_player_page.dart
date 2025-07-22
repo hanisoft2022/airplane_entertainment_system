@@ -14,9 +14,7 @@ class MusicPlayerPage extends StatelessWidget {
 
     return switch (layout) {
       AesLayoutData.small => const _SmallMusicPlayerPage(),
-      AesLayoutData.medium ||
-      AesLayoutData.large =>
-        const _LargeMusicPlayerPage(),
+      AesLayoutData.medium || AesLayoutData.large => const _LargeMusicPlayerPage(),
     };
   }
 }
@@ -213,8 +211,7 @@ class MusicPlayerView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      onPressed: () =>
-                          context.read<MusicPlayerCubit>().previous(),
+                      onPressed: () => context.read<MusicPlayerCubit>().previous(),
                       icon: const Icon(Icons.first_page_rounded),
                     ),
                     Padding(
@@ -251,17 +248,12 @@ class MusicPlayerView extends StatelessWidget {
                               ),
                               child: Center(
                                 child: InkWell(
-                                  onTap: () => context
-                                      .read<MusicPlayerCubit>()
-                                      .togglePlayPause(),
-                                  child: BlocSelector<MusicPlayerCubit,
-                                      MusicPlayerState, bool>(
+                                  onTap: () => context.read<MusicPlayerCubit>().togglePlayPause(),
+                                  child: BlocSelector<MusicPlayerCubit, MusicPlayerState, bool>(
                                     selector: (state) => state.isPlaying,
                                     builder: (context, isPlaying) {
                                       return Icon(
-                                        isPlaying
-                                            ? Icons.pause
-                                            : Icons.play_arrow,
+                                        isPlaying ? Icons.pause : Icons.play_arrow,
                                         size: 40,
                                         color: Colors.white,
                                       );
@@ -289,9 +281,7 @@ class MusicPlayerView extends StatelessWidget {
                         builder: (context, enabled) {
                           return IconButton(
                             color: enabled ? Colors.red : null,
-                            onPressed: () => context
-                                .read<MusicPlayerCubit>()
-                                .toggleShuffle(),
+                            onPressed: () => context.read<MusicPlayerCubit>().toggleShuffle(),
                             icon: const Icon(Icons.shuffle),
                           );
                         },
@@ -303,8 +293,7 @@ class MusicPlayerView extends StatelessWidget {
                           color: Colors.transparent,
                           child: SizedBox(
                             width: 360,
-                            child: BlocSelector<MusicPlayerCubit,
-                                MusicPlayerState, double>(
+                            child: BlocSelector<MusicPlayerCubit, MusicPlayerState, double>(
                               selector: (state) => state.progress,
                               builder: (context, progress) {
                                 return Slider(
@@ -312,9 +301,8 @@ class MusicPlayerView extends StatelessWidget {
                                   activeColor: Colors.red,
                                   thumbColor: Colors.white,
                                   value: progress,
-                                  onChanged: (value) => context
-                                      .read<MusicPlayerCubit>()
-                                      .seek(value),
+                                  onChanged: (value) =>
+                                      context.read<MusicPlayerCubit>().seek(value),
                                 );
                               },
                             ),
@@ -326,8 +314,7 @@ class MusicPlayerView extends StatelessWidget {
                         builder: (context, enabled) {
                           return IconButton(
                             color: enabled ? Colors.red : null,
-                            onPressed: () =>
-                                context.read<MusicPlayerCubit>().toggleLoop(),
+                            onPressed: () => context.read<MusicPlayerCubit>().toggleLoop(),
                             icon: const Icon(Icons.repeat_rounded),
                           );
                         },
@@ -404,8 +391,7 @@ class MusicMenuView extends StatelessWidget {
                         track: track,
                         isCurrent: track == current,
                         isPlaying: isPlaying,
-                        onTap: () =>
-                            context.read<MusicPlayerCubit>().playTrack(track),
+                        onTap: () => context.read<MusicPlayerCubit>().playTrack(track),
                       );
                     },
                     separatorBuilder: (_, __) => const Divider(
@@ -504,9 +490,7 @@ class _MusicMenuItem extends StatelessWidget {
                       ),
                     ),
                     Icon(
-                      isCurrent && isPlaying
-                          ? Icons.pause_rounded
-                          : Icons.play_arrow_rounded,
+                      isCurrent && isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
                     ),
                   ],
                 ),

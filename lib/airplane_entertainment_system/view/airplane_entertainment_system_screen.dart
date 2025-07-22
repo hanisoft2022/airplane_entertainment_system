@@ -9,15 +9,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class AirplaneEntertainmentSystemScreen extends StatelessWidget {
+  final StatefulNavigationShell navigationShell;
+  final List<Widget> children;
+
   const AirplaneEntertainmentSystemScreen({
     required this.navigationShell,
     required this.children,
     super.key,
   });
-
-  final StatefulNavigationShell navigationShell;
-
-  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
@@ -94,8 +93,7 @@ class AirplaneEntertainmentSystemView extends StatelessWidget {
                               onDestinationSelected: (index) {
                                 navigationShell.goBranch(
                                   index,
-                                  initialLocation:
-                                      index == navigationShell.currentIndex,
+                                  initialLocation: index == navigationShell.currentIndex,
                                 );
                               },
                             ),

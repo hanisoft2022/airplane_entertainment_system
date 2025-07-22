@@ -21,8 +21,7 @@ enum AesLayoutData {
 
   /// Derives the layout from the given [windowSize].
   static AesLayoutData _derive(Size windowSize) {
-    if (windowSize.width < windowSize.height ||
-        windowSize.width < AesLayout.mobileBreakpoint) {
+    if (windowSize.width < windowSize.height || windowSize.width < AesLayout.mobileBreakpoint) {
       return AesLayoutData.small;
     }
     if (windowSize.width < AesLayout.desktopBreakpoint) {
@@ -68,8 +67,7 @@ class AesLayout extends StatelessWidget {
 
   /// Retrieves the closest [_AesLayoutScope] from the given [context].
   static AesLayoutData of(BuildContext context) {
-    final layout =
-        context.dependOnInheritedWidgetOfExactType<_AesLayoutScope>();
+    final layout = context.dependOnInheritedWidgetOfExactType<_AesLayoutScope>();
     assert(layout != null, 'No AesLayout found in context');
     return layout!.layout;
   }
